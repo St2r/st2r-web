@@ -326,7 +326,11 @@
   "projects": [
     {
       "packageName": "application-blog",
-      "projectFolder": "applications/blog",
+      "projectFolder": "applications/blog"
+    },
+    {
+      "packageName": "babel-preset-st2r-next",
+      "projectFolder": "features/babel-preset-st2r-next"
     }
     // {
     //   /**

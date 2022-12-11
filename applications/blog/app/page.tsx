@@ -1,9 +1,34 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './page.module.css'
+import {useEffect, useState} from 'react';
+import {enableStaticRendering, observer} from 'mobx-react-lite';
+import {TestModel} from '@model/test';
+
+const TestComp = observer(() => {
+  const [state] = useState(new TestModel());
+
+  enableStaticRendering(typeof window === 'undefined');
+
+  useEffect(() => {
+    window.setTimeout(() => {
+      state.setTitle('next title');
+    }, 1000);
+  }, []);
+
+  return (
+    <>
+      <div>title</div>
+      <div>{state.title}</div>
+    </>
+  )
+})
 
 export default function Home() {
   return (
     <div className={styles.container}>
+      <TestComp/>
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js 13!</a>
