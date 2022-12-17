@@ -1,18 +1,30 @@
+'use client';
 import './globals.css'
-import {ReactNode} from 'react';
 
-const RootLayout  = ({
-  children,
-}: {children: ReactNode}) =>  {
+import 'reflect-metadata';
+
+import {ReactNode} from 'react';
+import {ServiceProvider} from '@model/context';
+import {St2rMuiThemeProvider} from '@model/theme';
+import {enableStaticRendering} from 'mobx-react-lite';
+
+typeof window === 'undefined' && enableStaticRendering(true);
+
+const RootLayout = ({
+                      children,
+                    }: { children: ReactNode }) => {
   return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head >
-      </head>
-      <body>{children}</body>
+    <html>
+    <head>
+      <title>Root Layout Title</title>
+    </head>
+    <body>
+    <ServiceProvider>
+      <St2rMuiThemeProvider>
+        {children}
+      </St2rMuiThemeProvider>
+    </ServiceProvider>
+    </body>
     </html>
   )
 }
