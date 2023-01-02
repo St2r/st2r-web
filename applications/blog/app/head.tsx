@@ -1,4 +1,8 @@
-import * as process from 'process';
+'use client';
+
+/** Polyfills */
+import 'reflect-metadata';
+
 import Script from 'next/script';
 
 export default function Head() {
