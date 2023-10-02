@@ -1,0 +1,29 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '.'
+      - '-f'
+      - './common/config/docker/Dockerfile'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/st2r-web/st2r-apps/resume:$COMMIT_SHA'
+      - '--build-arg'
+      - 'APP_NAME_TO_DEPLOY=@st2r-web/app-resume'
+      - '--build-arg'
+      - 'APP_PATH_TO_DEPLOY=apps/resume'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/st2r-web/st2r-apps/resume:$COMMIT_SHA'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'resume'
+      - '--image'
+      - 'us-central1-docker.pkg.dev/st2r-web/st2r-apps/resume:$COMMIT_SHA'
+      - '--region'
+      - 'us-central1'
+images:
+  - 'us-central1-docker.pkg.dev/st2r-web/st2r-apps/resume:$COMMIT_SHA'
