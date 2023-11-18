@@ -33,6 +33,7 @@ export const AppRoot: FC = () => {
       </head>
       <Body>
         <Outlet context={{target: 'body'}}/>
+        <div className=""></div>
         <CssBaseline/>
         <ScrollRestoration/>
         <Scripts/>

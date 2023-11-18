@@ -1,20 +1,23 @@
-import type {V2_MetaFunction} from "@remix-run/node";
+import type {MetaFunction} from "@remix-run/node";
 import {
   Accordion,
   AccordionDetails,
-  AccordionSummary, Box,
+  AccordionSummary, AppBar, Box,
   Button,
-  ButtonGroup, Chip, Divider, FormControlLabel,
+  ButtonGroup, Divider, FormControlLabel,
   FormGroup,
   IconButton,
-  Link, Paper, Stack, styled, Switch, ToggleButton, ToggleButtonGroup,
+  Link, Stack, styled, Switch, ToggleButton, ToggleButtonGroup,
+  Toolbar,
   Typography
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import {ThemeSwitcher} from "~/components/theme-switcher";
+import {TopBar} from "~/components/top-bar";
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return [
     {title: "New Remix App"},
     {name: "description", content: "Welcome to Remix!"},
@@ -70,64 +73,62 @@ const MaterialUISwitch = styled(Switch)(({theme}) => ({
 
 export default function Index() {
   return (
-    <div>
-      <Typography variant="h1">
-        李昂
-      </Typography>
+    <>
+      <TopBar/>
 
-      <ToggleButtonGroup value="dark">
-        <ToggleButton value="light">
-          <LightModeIcon/>
-        </ToggleButton>
-        <ToggleButton value="dark">
-          <DarkModeIcon/>
-        </ToggleButton>
-      </ToggleButtonGroup>
+      <main>
 
-      <FormGroup>
-        <FormControlLabel
-          control={<MaterialUISwitch sx={{m: 1}} defaultChecked/>}
-          label="MUI switch"
-        />
-      </FormGroup>
+        <Typography variant="h1">
+          李昂
+        </Typography>
 
-      <Divider/>
+        <ThemeSwitcher/>
 
-      <Box>
-        <Stack direction="row" gap={2}>
-          <GitHubIcon/>
-          <Link href="https://www.github.com">St2r</Link>
-        </Stack>
-      </Box>
+        <FormGroup>
+          <FormControlLabel
+            control={<MaterialUISwitch sx={{m: 1}} defaultChecked/>}
+            label="MUI switch"
+          />
+        </FormGroup>
 
-      <Button startIcon={<GitHubIcon/>}>
-        www.github.com
-      </Button>
+        <Divider/>
 
-      <ButtonGroup>
-        <Button variant="outlined">Test</Button>
-        <Button variant="outlined">Test</Button>
-        <Button variant="outlined"><GitHubIcon/></Button>
-      </ButtonGroup>
+        <Box>
+          <Stack direction="row" gap={2}>
+            <GitHubIcon/>
+            <Link href="https://www.github.com">St2r</Link>
+          </Stack>
+        </Box>
 
-      <br/>
-      <Link target="_blank" href="https://remix.run/docs" rel="noreferrer">
-        Remix Docs
-      </Link>
-      <Accordion defaultExpanded>
-        <AccordionSummary>
-          <Typography variant="h3">Summary</Typography>
-          <Typography variant="subtitle2">Summary</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    </div>
+        <Button startIcon={<GitHubIcon/>}>
+          www.github.com
+        </Button>
+
+        <ButtonGroup>
+          <Button variant="outlined">Test</Button>
+          <Button variant="outlined">Test</Button>
+          <Button variant="outlined"><GitHubIcon/></Button>
+        </ButtonGroup>
+
+        <br/>
+        <Link target="_blank" href="https://remix.run/docs" rel="noreferrer">
+          Remix Docs
+        </Link>
+        <Accordion defaultExpanded>
+          <AccordionSummary>
+            <Typography variant="h3">Summary</Typography>
+            <Typography variant="subtitle2">Summary</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+              malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+              sit amet blandit leo lobortis eget.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      </main>
+    </>
   );
 }
